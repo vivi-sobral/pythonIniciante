@@ -1,0 +1,34 @@
+import random
+import PySimpleGUI as ps
+class simulador_dados:
+    def __init__(self):
+        self.numMinimo = 1
+        self. numMaximo = 6
+
+    def jogarDado(self):
+         self.layout = [[ps.Text ('Quer jogar o dado?')],
+                   [ps.Button('sim'),ps.Button('não')]]
+
+         self.window = ps.Window("simulador de dados", layout = self.layout)
+         self.eventos, self.valores = self.window.Read()
+
+
+         if self.eventos == 'sim':
+             resultado = self.sorteiaNum()
+             resultado = "numero sorteado foi: " + resultado
+             self.layout2 = [[ps.Text(resultado)], [ps.Button('OK')]]
+             self.window2 = ps.Window ("numero sorteado", layout = self.layout2)
+             self.eventos, self.valores = self.window2.Read()
+         else:
+             self.layout2 = [[ps.Text("Fica para a proxima")], [ps.Button('OK')]]
+             self.window2 = ps.Window ("Fica para a proxima", layout = self.layout2)
+             self.eventos, self.valores = self.window2.Read()
+
+    def sorteiaNum(self):
+        return str(random.randint(self.numMinimo, self.numMaximo))
+
+
+
+simulador = simulador_dados()
+simulador.jogarDado()
+
